@@ -18,6 +18,9 @@
     <Filter Include="ファイル\CFile">
       <UniqueIdentifier>{04dc7dec-f6e2-4671-9e87-cb3303807226}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ファイル\math">
+      <UniqueIdentifier>{3bd13483-08a7-4bdd-a107-fb4e1b86743b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Application\ApplicationBase.h">
@@ -38,6 +41,9 @@
     <ClInclude Include="source\CFile\CFile.h">
       <Filter>ファイル\CFile</Filter>
     </ClInclude>
+    <ClInclude Include="source\math\mymath.h">
+      <Filter>ファイル\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Application\ApplicationBase.cpp">
@@ -54,6 +60,9 @@
     </ClCompile>
     <ClCompile Include="source\CFile\CFile.cpp">
       <Filter>ファイル\CFile</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\mymath.cpp">
+      <Filter>ファイル\math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

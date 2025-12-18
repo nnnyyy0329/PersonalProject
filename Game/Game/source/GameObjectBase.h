@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 #include "appframe.h"
-#include "mymath.h"
 
 // 計算用マクロ
 #define PI				(3.14159265358979323846) // 円周率

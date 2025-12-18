@@ -169,7 +169,6 @@
     <ClCompile Include="source\ModeGame_CheckHit.cpp" />
     <ClCompile Include="source\ModeMenu.cpp" />
     <ClCompile Include="source\ModeTitle.cpp" />
-    <ClCompile Include="source\mymath.cpp" />
     <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\ShieldEnemy.cpp" />
   </ItemGroup>
@@ -195,7 +194,6 @@
     <ClInclude Include="source\ModeGame.h" />
     <ClInclude Include="source\ModeMenu.h" />
     <ClInclude Include="source\ModeTitle.h" />
-    <ClInclude Include="source\mymath.h" />
     <ClInclude Include="source\Player.h" />
     <ClInclude Include="source\ShieldEnemy.h" />
   </ItemGroup>

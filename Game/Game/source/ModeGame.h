@@ -29,6 +29,7 @@ public:
 	virtual bool Process();
 	virtual bool Render();
 
+	void DecCooltime();																	// 攻撃クールタイム減少処理
 	void SpawnEnemies(int meleeCount, int bulletCount, int aoeCount, int shieldCount);	// エネミー生成関数
 	void CheckDeathEnemy();																// 敵のライフが0になったらカウントを減らす処理
 	void OpenMenu();																	// メニュー画面を開く処理

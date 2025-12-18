@@ -274,6 +274,9 @@ void ModeGame::HitMeleeColEnemy(Ability* abilityMelee, Enemy* enemy)
 	if(abilityMelee == nullptr){ return; }
 	if(enemy == nullptr){ return; }
 
+	// クールタイム中ならスキップ
+	if(_attack_cooltime > 0.0f){ return; }
+
 	// 敵のステータスが死亡ならスキップ
 	if(enemy->GetEnemyStatus() == Enemy::ENEMY_STATUS::DEATH){ return; }
 
@@ -301,9 +304,8 @@ void ModeGame::HitMeleeColEnemy(Ability* abilityMelee, Enemy* enemy)
 			meleeAttackTop, meleeAttackBottom, meleeAttackRadius
 		) != false)
 		{
-			//_player->SetIsMeleeSuccess(true);	// メレー成功
-
-			enemy->DamageEnemy(1); // ダメージ処理
+			_attack_cooltime = 20.0f;	// クールタイム減少
+			enemy->DamageEnemy(1);		// ダメージ処理
 		}
 	}
 }

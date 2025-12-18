@@ -12,9 +12,6 @@
     <Filter Include="Game\Gamemain">
       <UniqueIdentifier>{d3e9073a-b2fe-4b14-ae1c-47d8a09aede7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\math">
-      <UniqueIdentifier>{df0a91c1-3ea0-411d-aa63-db712d443a42}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\GameObject">
       <UniqueIdentifier>{4f5ee573-9442-4b45-9bfb-02e3a28f072b}</UniqueIdentifier>
     </Filter>
@@ -76,9 +73,6 @@
   <ItemGroup>
     <ClCompile Include="source\ModeGame.cpp">
       <Filter>Game\Gamemain</Filter>
-    </ClCompile>
-    <ClCompile Include="source\mymath.cpp">
-      <Filter>Game\math</Filter>
     </ClCompile>
     <ClCompile Include="source\Camera.cpp">
       <Filter>Game\GameObject\Camera</Filter>
@@ -153,9 +147,6 @@
   <ItemGroup>
     <ClInclude Include="source\ModeGame.h">
       <Filter>Game\Gamemain</Filter>
-    </ClInclude>
-    <ClInclude Include="source\mymath.h">
-      <Filter>Game\math</Filter>
     </ClInclude>
     <ClInclude Include="source\Camera.h">
       <Filter>Game\GameObject\Camera</Filter>

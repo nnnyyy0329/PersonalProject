@@ -1,6 +1,5 @@
 #include "AppFrame.h"
 #include "ApplicationMain.h"
-#include "mymath.h"
 #include "ModeGame.h"
 #include "ModeEffekseer.h"
 
@@ -388,6 +387,7 @@ bool ModeGame::Process()
 
 	// その他の処理
 	{
+		DecCooltime();		// 攻撃クールタイム減少処理
 		CheckDeathEnemy();	// 敵のライフが0になったらカウントを減らす処理
 		OpenMenu();			// メニュー画面を開く処理
 	}
@@ -657,6 +657,15 @@ public:
 	}
 };
 
+// クールタイム減少処理
+void ModeGame::DecCooltime()
+{
+	if(_attack_cooltime > 0.0f)
+	{
+		_attack_cooltime -= 1.0f;
+	}
+}
+
 // 敵生成関数
 void ModeGame::SpawnEnemies(int meleeCount, int bulletCount, int aoeCount, int shieldCount)
 {
@@ -780,6 +789,13 @@ void ModeGame::DrawCntOther()
 	{
 		std::string spawnCntStr = "残りの敵の数 : " + std::to_string(_spawncnt);
 		DrawString(offsetX, offsetY, spawnCntStr.c_str(), GetColor(255, 0, 0));
+		offsetY += 20;
+	}
+
+	// クールタイム表示
+	{
+		std::string cooltimeStr = "攻撃クールタイム : " + std::to_string(static_cast<int>(_attack_cooltime));
+		DrawString(offsetX-100, offsetY, cooltimeStr.c_str(), GetColor(255, 0, 0));
 		offsetY += 20;
 	}
 }
