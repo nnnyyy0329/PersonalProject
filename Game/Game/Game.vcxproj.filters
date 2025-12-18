@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Game\Gamemain">
+      <UniqueIdentifier>{d3e9073a-b2fe-4b14-ae1c-47d8a09aede7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\math">
+      <UniqueIdentifier>{df0a91c1-3ea0-411d-aa63-db712d443a42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject">
+      <UniqueIdentifier>{4f5ee573-9442-4b45-9bfb-02e3a28f072b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character">
+      <UniqueIdentifier>{21d58e7e-842d-4f44-861a-f14d38623eaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Camera">
+      <UniqueIdentifier>{7905c2be-7050-4c47-a83a-8e616394a7e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Player">
+      <UniqueIdentifier>{0f4caf2b-a8b3-435e-97bf-0eb8a505c597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Map">
+      <UniqueIdentifier>{99b1ff7d-bfaf-47ff-859b-55f7d09c76d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Mode">
+      <UniqueIdentifier>{4d87c882-2d06-495c-9561-c9a65836a8e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Application">
+      <UniqueIdentifier>{8368e71b-150a-426b-90ae-4718cf74da99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Enemy">
+      <UniqueIdentifier>{e64f3ebe-445e-4366-ab00-90ee776c0868}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Bullet">
+      <UniqueIdentifier>{9be4de0a-517c-454d-b2a6-aa4a31b3821e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Enemy\BulletEnemy">
+      <UniqueIdentifier>{4c9d3789-737d-4e32-9366-e252f7110f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Ability">
+      <UniqueIdentifier>{b8757d70-9eb7-4de1-8826-24eb7bacbc73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Ability\AbilityBullet">
+      <UniqueIdentifier>{4b4a8b94-f0a8-466c-8cef-05c6da9f0874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Ability\AbilityMelee">
+      <UniqueIdentifier>{a3036a78-a1ba-4a79-9a7b-a164757e3d9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Enemy\MeleeEnemy">
+      <UniqueIdentifier>{5fc1c4a4-6271-46a8-86a5-5b509e0976f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Enemy\AoEEnemy">
+      <UniqueIdentifier>{6d1987f6-1204-4880-b458-96163a51b48e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Ability\AbilityAoE">
+      <UniqueIdentifier>{06cd4d73-2985-406f-807c-36f38a423817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Ability\AbilityShield">
+      <UniqueIdentifier>{a173d701-ea7d-4810-9292-d15af11d5521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Enemy\ShieldEnemy">
+      <UniqueIdentifier>{e653f04c-6c16-4bb6-a955-0ad18eef2509}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObject\Character\Ability\AbilityBaseAttack">
+      <UniqueIdentifier>{229254c3-0ecb-4ea7-8a93-406216771a42}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\ModeGame.cpp">
+      <Filter>Game\Gamemain</Filter>
+    </ClCompile>
+    <ClCompile Include="source\mymath.cpp">
+      <Filter>Game\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Camera.cpp">
+      <Filter>Game\GameObject\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObjectBase.cpp">
+      <Filter>Game\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Character.cpp">
+      <Filter>Game\GameObject\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Player.cpp">
+      <Filter>Game\GameObject\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Map.cpp">
+      <Filter>Game\GameObject\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ModeTitle.cpp">
+      <Filter>Game\Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ModeEffekseer.cpp">
+      <Filter>Game\Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ModeMenu.cpp">
+      <Filter>Game\Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ApplicationGlobal.cpp">
+      <Filter>Game\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ApplicationMain.cpp">
+      <Filter>Game\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Enemy.cpp">
+      <Filter>Game\GameObject\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\BulletEnemy.cpp">
+      <Filter>Game\GameObject\Character\Enemy\BulletEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Bullet.cpp">
+      <Filter>Game\GameObject\Character\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Ability.cpp">
+      <Filter>Game\GameObject\Character\Ability</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AbilityMelee.cpp">
+      <Filter>Game\GameObject\Character\Ability\AbilityMelee</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AbilityBullet.cpp">
+      <Filter>Game\GameObject\Character\Ability\AbilityBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MeleeEnemy.cpp">
+      <Filter>Game\GameObject\Character\Enemy\MeleeEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AoEEnemy.cpp">
+      <Filter>Game\GameObject\Character\Enemy\AoEEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AbilityAoE.cpp">
+      <Filter>Game\GameObject\Character\Ability\AbilityAoE</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AbilityShield.cpp">
+      <Filter>Game\GameObject\Character\Ability\AbilityShield</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ShieldEnemy.cpp">
+      <Filter>Game\GameObject\Character\Enemy\ShieldEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AbilityBaseAttack.cpp">
+      <Filter>Game\GameObject\Character\Ability\AbilityBaseAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ModeGame_CheckHit.cpp">
+      <Filter>Game\Gamemain</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\ModeGame.h">
+      <Filter>Game\Gamemain</Filter>
+    </ClInclude>
+    <ClInclude Include="source\mymath.h">
+      <Filter>Game\math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Camera.h">
+      <Filter>Game\GameObject\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObjectBase.h">
+      <Filter>Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Character.h">
+      <Filter>Game\GameObject\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Player.h">
+      <Filter>Game\GameObject\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Map.h">
+      <Filter>Game\GameObject\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ModeTitle.h">
+      <Filter>Game\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ModeEffekseer.h">
+      <Filter>Game\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ModeMenu.h">
+      <Filter>Game\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ApplicationGlobal.h">
+      <Filter>Game\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ApplicationMain.h">
+      <Filter>Game\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Enemy.h">
+      <Filter>Game\GameObject\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\BulletEnemy.h">
+      <Filter>Game\GameObject\Character\Enemy\BulletEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Bullet.h">
+      <Filter>Game\GameObject\Character\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Ability.h">
+      <Filter>Game\GameObject\Character\Ability</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AbilityMelee.h">
+      <Filter>Game\GameObject\Character\Ability\AbilityMelee</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AbilityBullet.h">
+      <Filter>Game\GameObject\Character\Ability\AbilityBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MeleeEnemy.h">
+      <Filter>Game\GameObject\Character\Enemy\MeleeEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AoEEnemy.h">
+      <Filter>Game\GameObject\Character\Enemy\AoEEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AbilityAoE.h">
+      <Filter>Game\GameObject\Character\Ability\AbilityAoE</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AbilityShield.h">
+      <Filter>Game\GameObject\Character\Ability\AbilityShield</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ShieldEnemy.h">
+      <Filter>Game\GameObject\Character\Enemy\ShieldEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AbilityBaseAttack.h">
+      <Filter>Game\GameObject\Character\Ability\AbilityBaseAttack</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
