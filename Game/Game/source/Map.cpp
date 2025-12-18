@@ -95,6 +95,8 @@ bool Map::Render()
 	{
 		// プレイヤー
 		{
+			if(_player == nullptr) { return false; } // nullptrチェック
+
 			// プレイヤー位置とコリジョン半径取得
 			VECTOR player_pos = _player->GetPosition();
 			float player_col_r = _player->GetColR();

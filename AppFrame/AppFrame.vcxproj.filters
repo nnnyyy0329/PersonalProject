@@ -21,6 +21,12 @@
     <Filter Include="ファイル\math">
       <UniqueIdentifier>{3bd13483-08a7-4bdd-a107-fb4e1b86743b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ファイル\Manager">
+      <UniqueIdentifier>{9ca4e490-bd97-419a-b337-2ae25a1c0d8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ファイル\Manager\Component">
+      <UniqueIdentifier>{55fe6603-4377-462e-8954-4484e5643ecd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Application\ApplicationBase.h">
@@ -43,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="source\math\mymath.h">
       <Filter>ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Manager\ComponentManager.h">
+      <Filter>ファイル\Manager\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

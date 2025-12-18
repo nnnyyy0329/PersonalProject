@@ -25,8 +25,8 @@
 
 namespace
 {
-	const float SPAWN_RANGE_X = 300.0f; // エネミー生成範囲X
-	const float SPAWN_RANGE_Z = 300.0f; // エネミー生成範囲Z
+	const float SPAWN_RANGE_X = 400.0f; // エネミー生成範囲X
+	const float SPAWN_RANGE_Z = 400.0f; // エネミー生成範囲Z
 	const float SPAWN_HEIGHT = 0.0f;    // エネミー生成高さ
 }
 
@@ -50,7 +50,7 @@ bool ModeGame::Initialize()
 
 	// エネミーの生成
 	{
-		SpawnEnemies(3, 1, 2, 2);
+		SpawnEnemies(2, 1, 2, 1);
 	}
 
 	// アビリティの生成
@@ -390,6 +390,8 @@ bool ModeGame::Process()
 		DecCooltime();		// 攻撃クールタイム減少処理
 		CheckDeathEnemy();	// 敵のライフが0になったらカウントを減らす処理
 		OpenMenu();			// メニュー画面を開く処理
+		ClearProcess();		// クリア処理
+		GameOverProcess();	// ゲームオーバー処理
 	}
 
 	return true;
@@ -405,6 +407,8 @@ bool ModeGame::Render()
 		SetWriteZBuffer3D(TRUE);
 		SetUseBackCulling(TRUE);
 	}
+
+	SetFontSize(24);
 
 	// オブジェクトのレンダー読み込み
 	{
@@ -656,6 +660,7 @@ public:
 		return 0;
 	}
 };
+/*******************************************************************************/
 
 // クールタイム減少処理
 void ModeGame::DecCooltime()
@@ -778,24 +783,41 @@ void ModeGame::ClearProcess()
 	}
 }
 
+// ゲームオーバー処理
+void ModeGame::GameOverProcess()
+{
+	// プレイヤーのライフが0以下か確認
+	if(_player->GetLife() <= 0) // ライフが0以下の場合
+	{
+		// このモードを削除予約
+		ModeServer::GetInstance()->Del(this);
+
+		// ゲームオーバーモードを追加
+		ModeServer::GetInstance()->Add(new ModeGameOver(), 10, "game");
+
+		// ゲームメインを作成
+		ModeServer::GetInstance()->Add(new ModeGame(), 0, "gamemain");
+	}
+}
+
 // その他の描画
 void ModeGame::DrawCntOther()
 {
 	// 描画オフセット
-	int offsetX = 1750;
+	int offsetX = 1650;
 	int offsetY = 10;
 
 	// スポーンカウント表示
 	{
 		std::string spawnCntStr = "残りの敵の数 : " + std::to_string(_spawncnt);
 		DrawString(offsetX, offsetY, spawnCntStr.c_str(), GetColor(255, 0, 0));
-		offsetY += 20;
+		offsetY += 30;
 	}
 
 	// クールタイム表示
 	{
 		std::string cooltimeStr = "攻撃クールタイム : " + std::to_string(static_cast<int>(_attack_cooltime));
-		DrawString(offsetX-100, offsetY, cooltimeStr.c_str(), GetColor(255, 0, 0));
+		//DrawString(offsetX-100, offsetY, cooltimeStr.c_str(), GetColor(255, 0, 0));
 		offsetY += 20;
 	}
 }

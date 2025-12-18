@@ -11,6 +11,8 @@ public:
 	virtual bool Process();
 	virtual bool Render();
 
+	void DrawTitleScreen(); // ƒ^ƒCƒgƒ‹‰æ–Ê•`‰æ
+
 protected:
 
 	int _cg;

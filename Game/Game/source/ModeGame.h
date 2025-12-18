@@ -1,5 +1,7 @@
 #include "appframe.h"
 #include "ModeMenu.h"
+#include "ModeGameOver.h"
+//#include "ModeGameClear.h"
 
 #define BULLET_MAX 100
 
@@ -34,6 +36,7 @@ public:
 	void CheckDeathEnemy();																// 敵のライフが0になったらカウントを減らす処理
 	void OpenMenu();																	// メニュー画面を開く処理
 	void ClearProcess();																// クリア処理
+	void GameOverProcess();																// ゲームオーバー処理
 	void DrawCntOther();																// その他の描画	
 	void DrawShadowMap();																// シャドウマップ描画処理
 	bool AllEnemiesDeadInArea();														// マップ内の敵が全滅しているか確認

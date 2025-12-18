@@ -252,15 +252,17 @@ void AbilityAoE::DrawAoEAttackRange()
 		}
 
 		// 攻撃中心点を描画
-		DrawSphere3D(_attack_circle.center, 8.0f, 16, GetColor(255, 0, 0), GetColor(255, 255, 255), TRUE);
+		//DrawSphere3D(_attack_circle.center, 8.0f, 16, GetColor(255, 0, 0), GetColor(255, 255, 255), TRUE);
 	}
 	
 	// デバッグ情報表示
-	DrawFormatString(10, 900, GetColor(255, 255, 255), "AoE Timer: %.1f", _attack_timer);
+	{
+		//DrawFormatString(10, 900, GetColor(255, 255, 255), "AoE Timer: %.1f", _attack_timer);
 
-	DrawFormatString(10, 920, _is_attacking ? GetColor(0, 255, 0) : GetColor(255, 0, 0),
-		"AoE Attack: %s", _is_attacking ? "ACTIVE" : "INACTIVE");
+		//DrawFormatString(10, 920, _is_attacking ? GetColor(0, 255, 0) : GetColor(255, 0, 0),
+		//	"AoE Attack: %s", _is_attacking ? "ACTIVE" : "INACTIVE");
 
-	DrawFormatString(10, 940, _is_start_aoe_attack ? GetColor(0, 255, 0) : GetColor(255, 0, 0),
-		"AoE Started: %s", _is_start_aoe_attack ? "TRUE" : "FALSE");
+		//DrawFormatString(10, 940, _is_start_aoe_attack ? GetColor(0, 255, 0) : GetColor(255, 0, 0),
+		//	"AoE Started: %s", _is_start_aoe_attack ? "TRUE" : "FALSE");
+	}
 }

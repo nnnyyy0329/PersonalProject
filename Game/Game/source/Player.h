@@ -55,6 +55,7 @@ public:
 	void DrawPlayerStatus();		// プレイヤーのステータス表示関数
 	void DrawCooltime();			// クールタイム描画
 	void DrawOther();				// その他デバッグ情報描画
+	void DrawColorBox();			// カラーボックス描画
 
 	// 特定のアビリティを取得
 	template<typename T>
@@ -97,7 +98,10 @@ public:
 	float GetMeleeColR() const { return _melee_col_r; }
 	void SetMeleeColR(const float col_r){ this->_melee_col_r = col_r; }
 
-	const std::vector<std::unique_ptr<Ability>>& GetPlayerAbilities() const { return _player_abilities; }
+	const std::vector<std::unique_ptr<Ability>>& GetPlayerAbilities() const 
+	{ 
+		return _player_abilities.GetAllComponents();
+	}
 
 	// クラスセット
 	void SetModeGame(ModeGame* modeGame) { _modeGame = modeGame; } // モードゲームセット
@@ -111,8 +115,9 @@ protected:
 	PLAYER_STATUS _status; // 状態
 	PLAYER_STATUS oldStatus;
 
-	int _player_key;  // 現在のキー入力
-	int _player_trg;  // 現在のトリガー入力
+	int _player_key;	// 現在のキー入力
+	int _player_trg;	// 現在のトリガー入力
+	int _abilityCount;	// 所持している能力の数
 
 	float _player_rad;		// プレイヤーの向き角度
 	float _player_length;	// プレイヤーの移動距離
@@ -128,22 +133,13 @@ protected:
 	std::vector<Enemy*> _enemies;							 // エネミーの配列
 	std::vector<Enemy*>_hit_enemy;							 // 攻撃ヒットしたエネミーの配列
 	std::vector<Enemy*>_death_enemies;						 // 死亡したエネミーの配列
-	std::vector<std::unique_ptr<Ability>>_player_abilities;  // プレイヤーのアビリティ配列
 	std::vector<AbilityEnum>_ability_enumes;				 // プレイヤーの能力配列
+
+	ComponentManager<Ability>_player_abilities;
 };
 
-// 特定のアビリティ取得
-template<typename T> 
-T* Player::GetAbility() // T型のアビリティポインタを返す
+template<typename T>
+T* Player::GetAbility()
 {
-	// プレイヤーのアビリティ配列を走査
-	for(auto& ability : _player_abilities)
-	{
-		// 動的キャストで特定のアビリティ型に変換を試みる
-		if(auto specific_ability = dynamic_cast<T*>(ability.get())) // T型にキャストできた場合
-		{
-			return specific_ability; // T型のアビリティポインタを返す
-		}
-	}
-	return nullptr; // 見つからなかった場合はnullptrを返す
+	return _player_abilities.GetComponent<T>();
 }

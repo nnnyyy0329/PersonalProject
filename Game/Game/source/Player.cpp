@@ -53,7 +53,8 @@ bool Player::Initialize()
 		_collision_weight = 10.0f;
 		_melee_col_r = 50.0f;
 		_moveSpeed = 6.0f;
-		_life = 15.0f;
+		_life = 5.0f;
+		_abilityCount = 0;
 	}
 
 	// クラスインスタント初期化
@@ -121,24 +122,6 @@ bool Player::Render()
 	// 再生時間をセットする
 	MV1SetAttachAnimTime(_handle, _attach_index, _play_time);
 
-	// モデルを描画する
-	{
-		// 位置
-		MV1SetPosition(_handle, _vPos);
-
-		// 向きからY軸回転を算出
-		VECTOR vRot = { 0,0,0 };
-
-		// モデルが標準でどちらを向いているかで式が変わる(これは-zを向いている場合)
-		vRot.y = atan2(_vDir.x * -1, _vDir.z * -1);	
-
-		// 回転をセット
-		MV1SetRotationXYZ(_handle, vRot);
-
-		// 描画
-		MV1DrawModel(_handle);
-	}
-
 	// デバッグ用
 	{
 		// カプセルコリジョン描画
@@ -148,15 +131,18 @@ bool Player::Render()
 		if (_is_attacking)
 		DrawAttackCollision();
 
-		// 能力取得描画
-		DrawGetAbility();
-
 		// プレイヤーのステータス表示関数
 		//DrawPlayerStatus();
+
+		// カラーボックス描画
+		DrawColorBox();
+
+		// 能力取得描画
+		DrawGetAbility();
 	}
 
 	// アビリティの描画処理を追加
-	for(auto& ability : _player_abilities)
+	for(auto& ability : _player_abilities.GetAllComponents())
 	{
 		if(ability != nullptr)
 		{
@@ -169,6 +155,46 @@ bool Player::Render()
 
 	// その他デバッグ情報描画
 	DrawOther();
+
+	// モデルを描画する
+	{
+		// シールド成功時の無敵時間中は点滅させる
+		if(_invincible_time > 0.f)
+		{
+			// 点滅処理
+			if(_invincible_time > 0.0f && (static_cast<int>(_invincible_time) / 4) % 2 == 0)
+			{
+				// 描画しない
+				return false;
+			}
+		}
+
+		// 通常の無敵時間中も点滅させる
+		if(_cooltime > 0.f)
+		{
+			// 点滅処理
+			if(_cooltime > 0.0f && (static_cast<int>(_cooltime) / 4) % 2 == 0)
+			{
+				// 描画しない
+				return false;
+			}
+		}
+
+		// 位置
+		MV1SetPosition(_handle, _vPos);
+
+		// 向きからY軸回転を算出
+		VECTOR vRot = { 0,0,0 };
+
+		// モデルが標準でどちらを向いているかで式が変わる(これは-zを向いている場合)
+		vRot.y = atan2(_vDir.x * -1, _vDir.z * -1);
+
+		// 回転をセット
+		MV1SetRotationXYZ(_handle, vRot);
+
+		// 描画
+		MV1DrawModel(_handle);
+	}
 
 	return true;
 }
@@ -675,7 +701,7 @@ void Player::CheckDeathEnemy()
 // プレイヤーの能力に応じた処理
 void Player::ProcessAbilities()
 {
-	for(auto& ability : _player_abilities)
+	for(auto& ability : _player_abilities.GetAllComponents())
 	{
 		if(ability == nullptr){ continue; }
 		if(_modeGame == nullptr){ continue; }
@@ -778,7 +804,7 @@ void Player::AddAbility(std::unique_ptr<Ability> ability)
 	if(shouldAdd)
 	{
 		ability->Initialize();
-		_player_abilities.push_back(std::move(ability));
+		_player_abilities.AddComponent(std::move(ability));
 	}
 }
 
@@ -840,7 +866,7 @@ void Player::DrawGetAbility()
 		int aoe_count = 0;
 		int shield_count = 0;
 
-		for(const auto& ability : _player_abilities)
+		for(const auto& ability : _player_abilities.GetAllComponents())
 		{
 			// dynamic_castを使ってアビリティタイプを判定
 			if(dynamic_cast<const AbilityMelee*>(ability.get()))
@@ -864,38 +890,45 @@ void Player::DrawGetAbility()
 		// 能力を描画
 		const char* current_ability_name = ""; // 能力名の初期化
 		int x_offset = 30;
-		int y_offset = 90;
+		int y_offset = 390;
 
 		// 各能力を個別に表示
 		bool hasAbility = false;
 
+		// 背景ボックスのサイズを計算
+		_abilityCount = 0;
+		if(melee_count > 0) _abilityCount++;
+		if(bullet_count > 0) _abilityCount++;
+		if(aoe_count > 0) _abilityCount++;
+		if(shield_count > 0) _abilityCount++;
+
 		// アビリティリストのタイトル表示
-		DrawFormatString(0, y_offset, GetColor(220, 5, 250), "===== Get Abilities =====");
-		y_offset += 20;
+		DrawFormatString(0, y_offset, GetColor(0, 255, 255), "===== Get Abilities =====");
+		y_offset += 30;
 
 		// 現在の能力名を表示
 		if(melee_count > 0)
 		{
-			DrawFormatString(x_offset, y_offset, GetColor(220, 5, 250), "Ability Melee   Dキー");
-			y_offset += 20;
+			DrawFormatString(x_offset, y_offset, GetColor(0, 255, 255), "Ability Melee   Dキー");
+			y_offset += 30;
 			hasAbility = true;
 		}
 		if(bullet_count > 0)
 		{
-			DrawFormatString(x_offset, y_offset, GetColor(220, 5, 250), "Ability Bullet	 Xキー");
-			y_offset += 20;
+			DrawFormatString(x_offset, y_offset, GetColor(0, 255, 255), "Ability Bullet	 Xキー");
+			y_offset += 30;
 			hasAbility = true;
 		}
 		if(aoe_count > 0)
 		{
-			DrawFormatString(x_offset, y_offset, GetColor(220, 5, 250), "Ability AOE     Aキー");
-			y_offset += 20;
+			DrawFormatString(x_offset, y_offset, GetColor(0, 255, 255), "Ability AOE     Aキー");
+			y_offset += 30;
 			hasAbility = true;
 		}
 		if(shield_count > 0)
 		{
-			DrawFormatString(x_offset, y_offset, GetColor(220, 5, 250), "Ability Shield  Sキー");
-			y_offset += 20;
+			DrawFormatString(x_offset, y_offset, GetColor(0, 255, 255), "Ability Shield  Sキー");
+			y_offset += 30;
 			hasAbility = true;
 		}
 	}
@@ -988,36 +1021,59 @@ void Player::DrawCooltime()
 // その他デバッグ情報描画
 void Player::DrawOther()
 {
-	DrawFormatString(10, 10, GetColor(210, 5, 210), "-------PLAYER-------");
+	DrawFormatString(10, 10, GetColor(0, 255, 255), "-------PLAYER-------");
 
 	// プレイヤーライフ表示
 	{
 		// プレイヤーのライフを取得して表示
 		std::string playerLife = "Player Life : " + std::to_string(_life);
-		DrawString(10, 50, playerLife.c_str(), GetColor(210, 5, 210));
+		DrawString(10, 50, playerLife.c_str(), GetColor(0, 255, 255));
 	}
 
 	// ライフ表示の隣に移動キーの表示
 	{
-		int x = 230;
-		int y = 10;
-		DrawFormatString(x, y, GetColor(210, 5, 210), "---- Move Keys ----");
+		int x = 10;
+		int y = 250;
+
+		DrawFormatString(x, y, GetColor(0, 255, 255), "------ Move Keys ------");
 		y += 20;
-		DrawFormatString(x + 70, y, GetColor(210, 5, 210), "↑");
+		DrawFormatString(x + 120, y + 10, GetColor(0, 255, 255), "↑");
 		y += 20;											   
-		DrawFormatString(x + 70, y, GetColor(210, 5, 210), "↓");
+		DrawFormatString(x + 120, y + 20, GetColor(0, 255, 255), "↓");
 		y += 20;											   
-		DrawFormatString(x + 40, y - 20, GetColor(210, 5, 210), "←");
+		DrawFormatString(x + 90, y, GetColor(0, 255, 255), "←");
 		y += 20;											   
-		DrawFormatString(x + 100, y - 40, GetColor(210, 5, 210), "→");
+		DrawFormatString(x + 150, y - 20, GetColor(0, 255, 255), "→");
 	}
 
 	// 移動キーの隣に攻撃キーの表示
 	{
-		int x = 430;
-		int y = 10;
-		DrawFormatString(x, y, GetColor(210, 5, 210), "---- Normal Attack ----");
+		int x = 10;
+		int y = 130;
+
+		DrawFormatString(x, y, GetColor(0, 255, 255), "---- Normal Attack ----");
 		y += 20;
-		DrawFormatString(x + 90, y + 10, GetColor(210, 5, 210), "Zキー");
+
+		DrawFormatString(x + 120, y + 30, GetColor(0, 255, 255), "Zキー");
 	}
+}
+
+// カラーキューブ描画
+void Player::DrawColorBox()
+{
+	// 背景ボックスの描画（半透明）
+	int box_x = 0;
+	int box_y = 0;
+	int box_width = 350;
+	int box_height = 420;
+
+	if(_abilityCount > 0)
+	{
+		box_height = box_height + (_abilityCount * 30); // タイトル + アビリティ分
+	}
+
+	// 半透明設定
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 160); // 50%透明
+	DrawBox(box_x, box_y, box_x + box_width, box_y + box_height, GetColor(0, 0, 0), TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); // 元に戻す
 }

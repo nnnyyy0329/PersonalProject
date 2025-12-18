@@ -166,6 +166,7 @@
     <ClCompile Include="source\MeleeEnemy.cpp" />
     <ClCompile Include="source\ModeEffekseer.cpp" />
     <ClCompile Include="source\ModeGame.cpp" />
+    <ClCompile Include="source\ModeGameOver.cpp" />
     <ClCompile Include="source\ModeGame_CheckHit.cpp" />
     <ClCompile Include="source\ModeMenu.cpp" />
     <ClCompile Include="source\ModeTitle.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="source\MeleeEnemy.h" />
     <ClInclude Include="source\ModeEffekseer.h" />
     <ClInclude Include="source\ModeGame.h" />
+    <ClInclude Include="source\ModeGameOver.h" />
     <ClInclude Include="source\ModeMenu.h" />
     <ClInclude Include="source\ModeTitle.h" />
     <ClInclude Include="source\Player.h" />

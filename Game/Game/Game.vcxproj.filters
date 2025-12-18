@@ -143,6 +143,9 @@
     <ClCompile Include="source\ModeGame_CheckHit.cpp">
       <Filter>Game\Gamemain</Filter>
     </ClCompile>
+    <ClCompile Include="source\ModeGameOver.cpp">
+      <Filter>Game\Mode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ModeGame.h">
@@ -213,6 +216,9 @@
     </ClInclude>
     <ClInclude Include="source\AbilityBaseAttack.h">
       <Filter>Game\GameObject\Character\Ability\AbilityBaseAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ModeGameOver.h">
+      <Filter>Game\Mode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

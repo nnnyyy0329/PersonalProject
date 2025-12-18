@@ -31,7 +31,8 @@ ModeServer::~ModeServer()
 
 
 // 登録はするが、一度メインを回さないといけない
-int ModeServer::Add(ModeBase *mode, int layer, const char *name ) {
+int ModeServer::Add(ModeBase *mode, int layer, const char *name ) 
+{
 	_vModeAdd.push_back(mode);		// 登録予約
 	mode->_uid = _uid_count;
 	_uid_count++;
@@ -41,21 +42,27 @@ int ModeServer::Add(ModeBase *mode, int layer, const char *name ) {
 }
 
 // 削除予約
-int ModeServer::Del(ModeBase *mode) {
+int ModeServer::Del(ModeBase *mode)
+{
 	_vModeDel.push_back(mode);
 	return 0;
 }
 
 // 削除＆delete
-int ModeServer::Release(ModeBase *mode) {
+int ModeServer::Release(ModeBase *mode)
+{
 	lstModeBase::iterator ite = _vMode.begin();
-	for (; ite != _vMode.end(); ) {
-		if ((*ite) == mode) {
+
+	for (; ite != _vMode.end(); )
+	{
+		if ((*ite) == mode)
+		{
 			(*ite)->Terminate();
 			delete (*ite);
 			ite = _vMode.erase(ite);
 		}
-		else {
+		else
+		{
 			++ite;
 		}
 	}
@@ -65,15 +72,21 @@ int ModeServer::Release(ModeBase *mode) {
 // 全部削除
 void ModeServer::Clear() {
 	lstModeBase::reverse_iterator ite = _vMode.rbegin();
-	for (; ite != _vMode.rend(); ++ite ) {
+
+	for (; ite != _vMode.rend(); ++ite )
+	{
 		(*ite)->Terminate();
 		delete (*ite);
 	}
+
 	lstModeBase::iterator iteAdd = _vModeAdd.begin();
-	for (; iteAdd != _vModeAdd.end(); ++iteAdd) {
+
+	for (; iteAdd != _vModeAdd.end(); ++iteAdd)
+	{
 		(*iteAdd)->Terminate();
 		delete (*iteAdd);
 	}
+
 	_vMode.clear();
 	_vModeAdd.clear();
 	_vModeDel.clear();
@@ -82,10 +95,14 @@ void ModeServer::Clear() {
 
 
 // 削除予約されているか？
-bool ModeServer::IsDelRegist(ModeBase *mode) {
-	if (_vModeDel.size() > 0) {
+bool ModeServer::IsDelRegist(ModeBase *mode)
+{
+	if (_vModeDel.size() > 0) 
+	{
 		lstModeBase::iterator iteDel = _vModeDel.begin();
-		for (; iteDel != _vModeDel.end(); ++iteDel) {
+
+		for (; iteDel != _vModeDel.end(); ++iteDel)
+		{
 			if ((*iteDel) == mode) { return true; }
 		}
 	}
@@ -93,44 +110,60 @@ bool ModeServer::IsDelRegist(ModeBase *mode) {
 }
 
 // モードリストにあるか？
-bool ModeServer::IsAdd(ModeBase *mode) {
+bool ModeServer::IsAdd(ModeBase *mode)
+{
 	// 登録中のもの、登録予約中のものから検索する
 	lstModeBase::iterator ite;
+
 	ite = _vMode.begin();
-	for (; ite != _vMode.end(); ++ite) {
+	for (; ite != _vMode.end(); ++ite)
+	{
 		if (!IsDelRegist((*ite)) && (*ite) == mode) { return true; }
 	}
+
 	ite = _vModeAdd.begin();
-	for (; ite != _vModeAdd.end(); ++ite) {
+	for (; ite != _vModeAdd.end(); ++ite)
+	{
 		if (!IsDelRegist((*ite)) && (*ite) == mode) { return true; }
 	}
 	return false;
 }
 
 // 登録IDから検索
-ModeBase *ModeServer::Get(int uid) {
+ModeBase *ModeServer::Get(int uid)
+{
 	// 登録中のもの、登録予約中のものから検索する
 	lstModeBase::iterator ite;
+
 	ite = _vMode.begin();
-	for (; ite != _vMode.end(); ++ite) {
+	for (; ite != _vMode.end(); ++ite)
+	{
 		if (!IsDelRegist((*ite)) && (*ite)->_uid == uid) { return (*ite); }
 	}
+
 	ite = _vModeAdd.begin();
-	for (; ite != _vModeAdd.end(); ++ite) {
+	for (; ite != _vModeAdd.end(); ++ite)
+	{
 		if (!IsDelRegist((*ite)) && (*ite)->_uid == uid) { return (*ite); }
 	}
+
 	return NULL;
 }
 
 // 名前から検索
-ModeBase *ModeServer::Get(const char *name) {
+ModeBase *ModeServer::Get(const char *name)
+{
 	// 登録中のもの、登録予約中のものから検索する
 	lstModeBase::iterator ite;
+
 	ite = _vMode.begin();
-	for (; ite != _vMode.end(); ++ite) {
+	for (; ite != _vMode.end(); ++ite)
+	{
 		if (!IsDelRegist((*ite)) && (*ite)->_szName == name) { return (*ite); }
 	}
+
 	ite = _vModeAdd.begin();
+
 	for (; ite != _vModeAdd.end(); ++ite) {
 		if (!IsDelRegist((*ite)) && (*ite)->_szName == name) { return (*ite); }
 	}

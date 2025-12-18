@@ -8,7 +8,6 @@
 // EffekseerForDXLib.hをインクルードします。
 #include "EffekseerForDXLib.h"
 
-
 class ApplicationBase
 {
 public:

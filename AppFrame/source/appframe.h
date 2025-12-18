@@ -6,6 +6,7 @@
 #include "Application/ApplicationBase.h"
 #include "CFile/CFile.h"
 #include "math/mymath.h"
+#include "Manager/ComponentManager.h"
 
 #include <vector>
 #include <string>
@@ -13,3 +14,4 @@
 #include <unordered_map> 
 #include <array>
 #include <algorithm>
+#include <type_traits>
